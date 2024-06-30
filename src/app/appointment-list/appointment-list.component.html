@@ -1,0 +1,31 @@
+<div class="container bg-light w-100">
+  <div class="d-flex flex-col pt-5 w-75">
+    <input
+    class="col"
+      type="text"
+      [(ngModel)]="title"
+      placeholder="title"
+      class="form-control"
+    />
+
+    <input
+    class="col"
+      type="date"
+      [(ngModel)]="date"
+      placeholder="date"
+      class="form-control"
+    />
+
+    <button class="col" (click)="createAppointment()" class="btn btn-primary">Add</button>
+  </div>
+  <div *ngIf="appointments.length !== 0; else noAppointments" class="mt-4">
+    <ul *ngFor="let appointment of appointments" class="list-group">
+      <li (click)="deleteAppointment(appointment.id)" class="list-group-item list-group-item-action" role="button" >
+        {{ appointment.title }} {{ appointment.date | date : "dd.MM.yyyy" }}
+      </li>
+    </ul>
+  </div>
+  <ng-template #noAppointments>
+    <p class="text-center mt-4">There are no appointments left.</p>
+  </ng-template>
+</div>
